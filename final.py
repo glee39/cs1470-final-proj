@@ -2,6 +2,8 @@
 # Premise: Implementation of a CNN model to perform logo detection
 # goal accuracy: >= 70%
 
+# Note for team: KEEP SETTINGS AS "SPACES" & "4" FOR FORMATTING PLS
+
 # CODE WILL BE REFACTORED LATER
 
 import 
@@ -30,14 +32,13 @@ def preprocessing(train_file_path, test_file_path):
 
 class Model(tf.keras.Model):
 	def __init__(self):
-
 		super(Model, self).__init__()
 
 		self.learning_rate = 0.001
 		self.optimizer = tf.keras.optimizers.Adam(learning_rate=self.learning_rate)
 
 		# need to figure out best layer dimensions !_!
-        # check all the layers, maybe add/remove some
+		# check all the layers, maybe add/remove some
 
 		self.conv1 = tf.keras.layers.Conv2D(filters = , kernel_size = 3, strides = (2,2), padding = 'SAME')
 		self.conv2 = tf.keras.layers.Conv2D(filters = , kernel_size = 3, strides = (2,2), padding = 'SAME')
