@@ -33,40 +33,63 @@ class Model(tf.keras.Model):
 
 		super(Model, self).__init__()
 
-        self.learning_rate = 0.001
+		self.learning_rate = 0.001
 		self.optimizer = tf.keras.optimizers.Adam(learning_rate=self.learning_rate)
 
-        self.conv1 = tf.keras.layers.Conv2D(filters = , kernel_size = 3, strides = (2,2), padding = 'SAME')
-        self.conv2 = tf.keras.layers.Conv2D(filters = , kernel_size = 3, strides = (2,2), padding = 'SAME')
-        self.conv3 = tf.keras.layers.Conv2D(filters = , kernel_size = 3, strides = (2,2), padding = 'SAME')
+		# need to figure out best layer dimensions !_!
+        # check all the layers, maybe add/remove some
 
-        self.pool1 = tf.keras.layers.MaxPool2D(pool_size=(2, 2),strides=2)
-        self.pool2 = tf.keras.layers.MaxPool2D(pool_size=(2, 2),strides=2)
-        self.pool3 = tf.keras.layers.MaxPool2D(pool_size=(2, 2),strides=2)
+		self.conv1 = tf.keras.layers.Conv2D(filters = , kernel_size = 3, strides = (2,2), padding = 'SAME')
+		self.conv2 = tf.keras.layers.Conv2D(filters = , kernel_size = 3, strides = (2,2), padding = 'SAME')
+		self.conv3 = tf.keras.layers.Conv2D(filters = , kernel_size = 3, strides = (2,2), padding = 'SAME')
 
-        self.flatten = tf.keras.layers.Flatten()
+		self.pool1 = tf.keras.layers.MaxPool2D(pool_size=(2, 2),strides=2)
+		self.pool2 = tf.keras.layers.MaxPool2D(pool_size=(2, 2),strides=2)
+		self.pool3 = tf.keras.layers.MaxPool2D(pool_size=(2, 2),strides=2)
 
-        self.dense1 = tf.keras.layers.Dense()
-        self.dense2 = tf.keras.layers.Dense()
-        self.dense3 = tf.keras.layers.Dense()
+		self.flatten = tf.keras.layers.Flatten()
+
+		self.dense1 = tf.keras.layers.Dense()
+		self.dense2 = tf.keras.layers.Dense()
+		self.dense3 = tf.keras.layers.Dense()
 
     def call(self, inputs):
-        conv1 = self.conv1(inputs)
-        pool1 = self.pool1(conv1)
-        conv2 = self.conv2(pool1)
-        pool2 = self.pool2(conv2)
-        conv3 = self.conv3(pool2)
-        pool3 = self.pool3(conv3)
-        flattened = self.flatten(pool3)
+        conv_layer1 = self.pool1(self.conv1(inputs))
+        conv_layer2 = self.pool2(self.conv2(layer1))
+        conv_layer3 = self.pool3(self.conv3(layer2))
+	
+        flattened = self.flatten(conv_layer3)
+	
         dense1 = self.dense1(flattened)
         dense2 = self.dense2(dense1)
         dense3 = self.dense3(dense2)
 
         return dense3
+    
+    def loss(self, prbs, labels):
+        # will do
+    def accuracy(self, prbs, labels):
+	    # will do
+        # aim for accuracy = 0.7
+        
+        print(accuracy)
+        return accuracy
 
 def train(model, train_inputs, train_labels):
     
     with tf.GradientTape() as tape:
-			predictions = model.call(train_inputs)
+	predictions = model.call(train_inputs)
 
+def test(model, test_inputs, test_labels):
+    prbs = model.call(test_inputs)
+    return model.accuracy(prbs, test_labels)
+
+# need to create method that will visually output the classification and accuracy
+# this method will change depending on what we actually use as our testing inputs,
+#     so it will end up being coded very very last 
+
+def show_results(???):
+#     Ideal goal: return image with visual indication of the location of logo being recognized
+#     (or multiple, if there are multiple), maybe with a box ; ALSO want to have the accuracy of the
+#     classification floating nearby
 
