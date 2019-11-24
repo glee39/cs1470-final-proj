@@ -1,8 +1,8 @@
-// This is the main file for our CS1470 Final Project, group Going Merry! 
-// Premise: Implementation of a CNN model to perform logo detection
-// goal accuracy: >= 70%
+# This is the main file for our CS1470 Final Project, group Going Merry! 
+# Premise: Implementation of a CNN model to perform logo detection
+# goal accuracy: >= 70%
 
-//CODE WILL BE REFACTORED LATER
+# CODE WILL BE REFACTORED LATER
 
 import 
 import tensorflow as tf
