@@ -4,7 +4,7 @@ import tensorflow as tf
     
 
 def visualize(model, imgs, predictions, loss):
-
+    fake_var = 1
     class_names = ['Adidas','Apple','Coca Cola','Nike']
 
     for img in imgs:
